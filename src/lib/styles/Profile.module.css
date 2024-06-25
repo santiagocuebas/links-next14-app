@@ -1,0 +1,30 @@
+.absolute {
+	@apply flex fixed w-screen h-screen top-0 bottom-0 bg-[#000000aa] z-[300];
+}
+
+.user {
+	@apply w-fit m-auto text-[32px] font-bold;
+}
+
+.links {
+	box-shadow: 0 0 4px #aaaaaa;
+	scrollbar-width: none;
+	@apply flex flex-wrap relative content-start justify-center w-4/5 min-w-[460px] max-w-[1120px] h-full p-5 pt-[60px] rounded-md bg-white overflow-auto gap-5;
+
+	& .box {
+		@apply flex items-center justify-center w-[200px] h-[200px];
+	}
+
+	& .button {
+		box-shadow: 0 0 2px #2626ac;
+		@apply p-6 rounded-full bg-[#2b4de6] font-bold text-white cursor-pointer;
+	}
+
+	& .message {
+		@apply flex flex-col items-center justify-evenly w-[200px] h-[200px] p-[5px] text-center text-[18px] font-medium;
+	}
+
+	& .save {
+		@apply w-max h-min p-2 rounded-xl bg-[#2b4de6] text-[20px] font-bold text-white cursor-pointer hover:bg-[#2b4df6];
+	}
+}

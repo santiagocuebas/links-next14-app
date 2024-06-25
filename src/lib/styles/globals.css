@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+textarea { @apply resize-none; }
+
+a {
+	@apply text-black no-underline;
+}
+
+button { @apply border-none; }
+
+input { @apply border-none; }

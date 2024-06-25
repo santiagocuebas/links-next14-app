@@ -1,0 +1,8 @@
+.footer {
+  box-shadow: 0 0 4px #888888;
+  @apply flex fixed justify-center items-center w-full h-[50px] min-w-[460px] py-2.5 bottom-0 bg-[#118cbd] font-semibold text-white gap-2.5 z-[100] [&_p]:text-[20px];
+
+  & a {
+    @apply w-8 h-8 text-white;
+  }
+}

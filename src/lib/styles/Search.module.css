@@ -1,0 +1,12 @@
+.search {
+	@apply flex absolute justify-center w-full top-0 py-1.5 bg-[#118cbd] text-white;
+
+	& div {
+		grid-template-columns: 40px 1fr 40px;
+		@apply grid place-items-center w-1/2 min-w-[460px] max-w-[600px];
+	}
+	
+	& input {
+		@apply w-full p-1 rounded-md border-none outline-none text-black;
+	}
+}

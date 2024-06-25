@@ -1,0 +1,35 @@
+.nav {
+	box-shadow: 0 0 4px #888888;
+	@apply flex absolute justify-between items-center top-0 w-full min-w-[460px] h-[50px] px-5 bg-[#118cbd] text-white [&_h2]:text-[32px];
+
+	& .list {
+		@apply flex list-none gap-[5px] [&_span]:font-bold;
+
+		& li {
+			@apply font-bold text-white;
+		}
+	}
+
+	& .button {
+		@apply hidden p-1.5 rounded-full bg-white text-[#118cbd] cursor-pointer;
+	}
+
+	& .occult {
+		box-shadow: 0 0 4px #888888;
+		@apply self-start flex absolute flex-col top-[45px] right-5 py-[3px] rounded bg-white list-none;
+	}
+
+	& .link {
+		@apply flex items-center py-[5px] px-2.5 font-bold text-black gap-2.5 hover:bg-[#dddddd];
+	
+		& li {
+			@apply h-min text-[18px];
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.nav .list { @apply hidden; }
+
+	.nav .button { @apply flex; }
+}

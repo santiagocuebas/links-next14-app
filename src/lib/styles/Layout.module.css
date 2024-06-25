@@ -1,0 +1,10 @@
+.main {
+  grid-auto-columns: 1fr;
+  grid-auto-rows: min-content 1fr;
+  @apply grid items-start justify-items-center w-full min-w-[460px] h-screen py-[70px] bg-[#edf2f7] gap-5;
+}
+
+.image {
+  background-image: url('/background.jpeg');
+  @apply bg-no-repeat bg-cover bg-center;
+}

@@ -1,0 +1,27 @@
+.link {
+	box-shadow: 0 0 4px #888888;
+	@apply flex relative flex-col items-start w-[200px] h-[200px] aspect-square p-[5px] rounded-lg gap-y-0.5;
+
+	& button {
+		@apply hidden absolute top-2.5 right-2.5 bg-white cursor-pointer;
+	}
+	
+	&:hover > button { @apply flex; }
+	
+	& h2 {
+		@apply text-[24px] truncate leading-tight;
+	}
+	
+	& a {
+		@apply inline-block text-[#3682f3] truncate hover:text-[#863ae9];
+	}
+	
+	& div {
+		scrollbar-width: none;
+		@apply w-full max-h-24 overflow-y-scroll break-words overscroll-contain;
+	}
+	
+	& p {
+		@apply ml-auto mt-auto;
+	}
+}

@@ -1,0 +1,9 @@
+.error {
+  border: 1px solid #e6df88;
+  outline: 1px solid #e6df88;
+  @apply flex items-center w-full p-5 rounded bg-[#f2f8a1] font-bold [&_div]:w-full [&_ul]:pl-5;
+
+  & button {
+    @apply flex place-content-center p-2 rounded-lg bg-black text-[#f2f8a1] cursor-pointer;
+  }
+}

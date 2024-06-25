@@ -1,0 +1,27 @@
+.form {
+  box-shadow: 0 0 4px #777777;
+  @apply flex flex-wrap justify-between w-[450px] m-auto mt-[140px] p-5 rounded-lg bg-white gap-y-3;
+
+  & input, textarea {
+    outline: 1px solid #aaaaaa;
+    @apply w-full p-3.5 rounded-md;
+  
+    &:focus { outline: 2px solid #1989f1; }
+  }
+
+  & button {
+    @apply p-3 rounded-md text-[18px] font-bold text-white cursor-pointer;
+
+    &.add {
+      @apply w-full bg-[#2177c7]
+    }
+
+    &.edit {
+      @apply w-[30%] ml-auto bg-[#7c7777];
+    }
+
+    &.delete {
+      @apply w-2/3 bg-[#ca1212];
+    }
+  }
+}
