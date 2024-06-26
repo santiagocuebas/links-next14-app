@@ -61,7 +61,9 @@ export interface ResLink {
 	delete?: boolean;
 }
 
-export interface ResponseRegister {
+export interface ResRegister {
+	message?: string;
+	errors?: IKeys<string>;
 	user: IUser;
 	token: string;
 }

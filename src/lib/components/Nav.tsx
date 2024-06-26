@@ -49,7 +49,7 @@ export default function Nav() {
 
 	return (
 		<nav className={styles.nav}>
-			<h2>FAVORITE LINKS</h2>
+			<h2>NJLinks</h2>
 			<ul className={styles.list}>
 				<button onClick={handleLogout}>
 					<li>

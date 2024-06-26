@@ -1,67 +1,32 @@
 'use client';
 
-import type { ResponseRegister } from '@/lib/types/global';
-import type { MetadataProp } from '@/lib/types/props';
+import type { FormEventHandler } from 'react';
+import type { IKeys, ResRegister } from '@/lib/types/global';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { FaGithub } from 'react-icons/fa6';
-import { FcGoogle } from 'react-icons/fc';
-import axios from '@/lib/axios';
-import { GITHUB_ACCESS, GOOGLE_ID } from '@/lib/config';
-import { loadUser } from '@/lib/services';
+import { useState } from 'react';
+import { ErrorBox } from '@/lib/components';
+import { handleForm, loadUser } from '@/lib/services';
 import { useUserStore } from "@/lib/store";
 import styles from '@/lib/styles/Register.module.css';
 import { Method } from '@/lib/types/enums';
 
-export default function RegisterPage(metadata: MetadataProp) {
-	const { searchParams } = metadata;
+export default function RegisterPage() {
 	const router = useRouter();
 	const setUser = useUserStore(state => state.setUser);
+	const [errors, setErrors] = useState<IKeys<string> | null>(null);
 
-	async function getUserData(url: string) {
-		const data: ResponseRegister | null = await axios({ method: Method.POST, url })
-			.then(res => res.data)
-			.catch(err => {
-				console.log(err?.message);
-				return null;
-			});
+	const handleSubmit: FormEventHandler<HTMLFormElement> = async e => {
+		e.preventDefault();
 
-		if (data !== null) {
+		const data: ResRegister = await handleForm(e.currentTarget);
+
+		if (data.message) console.log(data.message);
+		else if (data.errors) setErrors(data.errors);
+		else if (data.user && data.token) {
 			loadUser(data, setUser);
 			router.push('/dash');
 		}
-	}
-
-	async function handleGoogle() {
-		const state = crypto
-			.getRandomValues(new Uint8Array(16))
-			.reduce((val, acc) => val += acc.toString(16), '');
-		
-		localStorage.setItem("latestCSRFToken", state);
-
-		const link = `https://accounts.google.com/o/oauth2/auth?scope=${'openid email'}&response_type=code&access_type=offline&state=${state}&redirect_uri=${location.origin}/register?type=google&client_id=${GOOGLE_ID}`;
-
-		window.location.assign(link);
 	};
-  
-	async function handleGithub() {
-		window.location.assign(GITHUB_ACCESS + `&redirect_uri=${location.origin}/register?type=github`);
-	};
-
-	useEffect(() => {
-		if (searchParams?.type === 'google' &&
-			searchParams.state === localStorage.getItem("latestCSRFToken")) {
-				localStorage.removeItem("latestCSRFToken");
-
-				getUserData('/auth/googleRegister?code=' + searchParams.code);
-		}
-	}, []);
-
-	useEffect(() => {
-		if (searchParams?.type === 'github' && searchParams.code) {
-			getUserData('/auth/githubRegister?code=' + searchParams.code);
-		}
-	}, []);
 
 	return (
 		<div className={styles.register}>
@@ -74,21 +39,19 @@ export default function RegisterPage(metadata: MetadataProp) {
 				</svg>
 			</svg>
 			<h2>
-        Register to FavLinks!
+        Register to NJLinks!
       </h2>
 			<div>
-        Log in with your favorite social provider to get started:
+        Log in to get started!
 			</div>
-			<span>
-				<button id="google" onClick={handleGoogle}>
-					<FcGoogle width={16} height={16} />
-					Continue with Google
+			<form action='/auth/register' method={Method.POST} onSubmit={handleSubmit}>
+				{errors ? <ErrorBox hide={setErrors} errors={errors} /> : null}
+				<input type='email' name='email' placeholder='Email' />
+				<input type='password' name='password' placeholder='Password' />
+				<button className={styles.button}>
+					Register
 				</button>
-				<button id="github" onClick={handleGithub}>
-					<FaGithub width={16} height={16} />
-					Continue with Github
-				</button>
-			</span>
+			</form>
 		</div>
 	);
 }

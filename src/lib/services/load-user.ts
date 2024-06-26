@@ -1,9 +1,9 @@
-import type { IUser, ResponseRegister } from '../types/global';
+import type { IUser, ResRegister } from '../types/global';
 import jsCookie from 'js-cookie';
 import axios from '../axios';
 
 export const loadUser = async (
-  data: ResponseRegister,
+  data: ResRegister,
   setUser: (user: IUser) => void
 ) => {
   setUser(data.user);

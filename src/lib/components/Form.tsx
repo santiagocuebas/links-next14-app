@@ -2,15 +2,15 @@
 
 import type { FormEvent } from 'react';
 import type { IKeys, ResLink } from '../types/global';
-import type { FormLinkProp } from '../types/props';
+import type { FormProp } from '../types/props';
 import { useRef, useState } from 'react';
 import { ErrorBox } from './index';
 import { handleForm, useOutClick } from '../services';
 import { useLinksStore } from '../store';
-import styles from'../styles/FormLink.module.css';
+import styles from'../styles/Form.module.css';
 import { Link, Method } from '../types/enums';
 
-export default function FormLink({ setVisible }: FormLinkProp) {
+export default function FormLink({ setVisible }: FormProp) {
 	const ref = useRef<HTMLFormElement | null>(null);
 	const link = useLinksStore(state => state.link);
 	const resetLink = useLinksStore(state => state.resetLink);

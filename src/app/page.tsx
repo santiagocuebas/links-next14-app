@@ -17,7 +17,7 @@ export default async function Home() {
     <main className={`${main.main} ${main.image}`}>
       <div className={styles.index}>
         <h1>
-          Favorite Links
+          NJLinks
         </h1>
         <h2>
           <i>Store your favorite Website&apos;s Links</i>
