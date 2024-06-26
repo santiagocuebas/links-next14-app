@@ -16,11 +16,11 @@ NJLinks es una simple aplicación web, basada en [este proyecto](https://github.
 
 ## Instalación Manual
 ```
-git clone -b njlinks-with-fs --single-branch https://github.com/santiagocuebas/links-next14-app
+git clone -b njlinks-local --single-branch https://github.com/santiagocuebas/links-next14-app
 cd links-next14-app
 pnpm run todo
 
-git clone -b links-api-with-fs --single-branch https://github.com/santiagocuebas/nodejs-links-api 
+git clone -b links-api-local --single-branch https://github.com/santiagocuebas/nodejs-links-api 
 cd nodejs-links-api 
 pnpm run todo
 ```
