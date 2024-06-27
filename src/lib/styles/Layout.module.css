@@ -8,3 +8,20 @@
   background-image: url('/background.jpeg');
   @apply bg-no-repeat bg-cover bg-center;
 }
+
+.index {
+	@apply flex flex-col items-center w-fit mt-[120px] gap-y-2.5;
+
+	& h1 {
+		@apply text-[80px] font-bold text-white;
+	}
+
+	& h2 {
+		@apply font-medium text-white [&_i]:text-[32px];
+	}
+
+	& a {
+		box-shadow: 0 0 2px #3295d8;
+		@apply py-2 px-4 rounded-lg bg-[#3295d8] text-[20px] font-semibold text-white hover:bg-[#3295e8];
+	}
+}

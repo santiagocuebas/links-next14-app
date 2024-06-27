@@ -2,19 +2,6 @@
   box-shadow: 0 0 2px #aaaaaa;
   @apply flex flex-col items-center w-full max-w-sm mt-10 p-6 rounded-xl bg-white text-center leading-none gap-4;
 
-  & .icon {
-    @apply w-10 h-10 mb-2;
-
-    & rect {
-      rx: 20%;
-      @apply w-full h-full;
-    }
-
-    & path {
-      @apply fill-white;
-    }
-  }
-
   & h2 {
     @apply w-max text-2xl font-bold;
   }

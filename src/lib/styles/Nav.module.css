@@ -1,17 +1,17 @@
 .nav {
 	box-shadow: 0 0 4px #888888;
-	@apply flex absolute justify-between items-center top-0 w-full min-w-[460px] h-[50px] px-5 bg-[#118cbd] text-white [&_h2]:text-[32px];
+	@apply flex absolute items-center top-0 w-full min-w-[460px] h-[50px] px-5 bg-[#118cbd] gap-2 text-white [&_h2]:text-[32px];
 
 	& .list {
-		@apply flex list-none gap-[5px] [&_span]:font-bold;
+		@apply flex ml-auto list-none gap-[5px] [&_span]:font-semibold;
 
 		& li {
-			@apply font-bold text-white;
+			@apply font-semibold text-white;
 		}
 	}
 
 	& .button {
-		@apply hidden p-1.5 rounded-full bg-white text-[#118cbd] cursor-pointer;
+		@apply hidden ml-auto p-1.5 rounded-full bg-white text-[#118cbd] cursor-pointer;
 	}
 
 	& .occult {
@@ -26,10 +26,10 @@
 			@apply h-min text-[18px];
 		}
 	}
-}
 
-@media (max-width: 600px) {
-	.nav .list { @apply hidden; }
-
-	.nav .button { @apply flex; }
+	@media (max-width: 600px) {
+		.list { @apply hidden; }
+	
+		.button { @apply flex; }
+	}	
 }

@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import { FaEllipsisH, FaRegCaretSquareRight, FaTimesCircle } from 'react-icons/fa';
 import axios from '../axios';
 import jsCookie from 'js-cookie';
+import { Logo } from './index';
 import { useOutClick } from '../services';
 import { useLinksStore, useUserStore } from '../store';
 import styles from'../styles/Nav.module.css';
@@ -49,7 +50,10 @@ export default function Nav() {
 
 	return (
 		<nav className={styles.nav}>
-			<h2>FAVORITE LINKS</h2>
+			<Logo nameClass='main' />
+			<h2>
+				NJLinks
+			</h2>
 			<ul className={styles.list}>
 				<button onClick={handleLogout}>
 					<li>

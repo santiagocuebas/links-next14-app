@@ -1,0 +1,18 @@
+.icon {
+	&.main {
+		@apply w-8 h-8;
+	}
+
+	&.register {
+		@apply w-10 h-10 mb-2;
+	}
+
+	& rect {
+		rx: 20%;
+		@apply w-full h-full;
+	}
+
+	& path {
+		@apply fill-white;
+	}
+}

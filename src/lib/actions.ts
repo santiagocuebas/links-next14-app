@@ -10,7 +10,7 @@ export async function getUserData(): Promise<ResponseRegister & { links: ILink[]
 
 	if (!token) throw redirect('/register');
 
-	return axios({ url: '/userData', headers: { Authorization: token.value } })
+	return axios({ url: '/user/userData', headers: { Authorization: token.value } })
 		.then(res => res.data)
 		.catch(() => {
 			cookies().delete('authenticate');

@@ -1,4 +1,5 @@
 import { FaSearch } from 'react-icons/fa';
+import { Logo } from './index';
 import { useLinksStore } from '../store';
 import styles from'../styles/Search.module.css';
 
@@ -10,7 +11,7 @@ export default function Search() {
 			<div>
 				<FaSearch size={24} />
 				<input type="text" onKeyUp={e => findLinks(e.currentTarget.value)} />
-				<div></div>
+				<Logo nameClass='main' />
 			</div>
 		</div>
   );

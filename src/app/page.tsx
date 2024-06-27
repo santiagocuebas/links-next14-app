@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import styles from '@/lib/styles/Home.module.css';
-import main from '@/lib/styles/Layout.module.css';
+import styles from '@/lib/styles/Layout.module.css';
 
 async function getData() {
   const token = cookies().get('authenticate');
@@ -14,10 +13,10 @@ export default async function Home() {
   await getData();
 	
 	return (
-    <main className={`${main.main} ${main.image}`}>
+    <main className={`${styles.main} ${styles.image}`}>
       <div className={styles.index}>
         <h1>
-          Favorite Links
+          NJLinks
         </h1>
         <h2>
           <i>Store your favorite Website&apos;s Links</i>
