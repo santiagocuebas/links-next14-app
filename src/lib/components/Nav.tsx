@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { FaEllipsisH, FaRegCaretSquareRight, FaTimesCircle } from 'react-icons/fa';
 import axios from '../axios';
-import jsCookie from 'js-cookie';
+import { deleteCookie } from 'cookies-next';
 import { Logo } from './index';
 import { useOutClick } from '../services';
 import { useLinksStore } from '../store';
@@ -21,7 +21,7 @@ export default function Nav() {
 
 	const handleLogout = async () => {
 		setVisible(false);
-		jsCookie.remove('authenticate', { path: '/', expires: 0 });
+		deleteCookie('authenticate', { path: '/', maxAge: 0 });
 		axios.defaults.headers.common.Authorization = '';
 		resetLinks();
 		router.push('/register');
@@ -38,7 +38,7 @@ export default function Nav() {
 			});
 
 		if (data.delete) {
-			jsCookie.remove('authenticate', { path: '/', expires: 0 });
+			deleteCookie('authenticate', { path: '/', maxAge: 0 });
 			axios.defaults.headers.common.Authorization = '';
 			resetLinks();
 			router.push('/');
