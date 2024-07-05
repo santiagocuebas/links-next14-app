@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import axios from "@/lib/axios";
 import { Dash } from '@/lib/components';
 
-export async function getUserData(): Promise<ResAuth> {
+async function getUserData(): Promise<ResAuth> {
 	const token = cookies().get('authenticate');
 
 	if (!token) throw redirect('/register');
