@@ -25,12 +25,6 @@ export interface ILink {
 
 export type PartialLink = Pick<ILink, 'title' | 'url' | 'description'>
 
-export interface IUserStore {
-	user: IUser |	null;
-	setUser: (user: IUser) => void;
-	resetUser: () => void;
-}
-
 export interface ILinksStore {
 	rawLinks: ILink[];
 	links: ILink[];
@@ -61,7 +55,13 @@ export interface ResLink {
 	delete?: boolean;
 }
 
-export interface ResponseRegister {
+export interface ResRegister {
 	user: IUser;
 	token: string;
+}
+
+export interface ResAuth {
+	user: IUser;
+	token: string;
+	links: ILink[];
 }

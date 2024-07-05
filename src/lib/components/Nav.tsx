@@ -7,14 +7,13 @@ import axios from '../axios';
 import jsCookie from 'js-cookie';
 import { Logo } from './index';
 import { useOutClick } from '../services';
-import { useLinksStore, useUserStore } from '../store';
+import { useLinksStore } from '../store';
 import styles from'../styles/Nav.module.css';
 import { Method } from '../types/enums';
 
 export default function Nav() {
 	const router = useRouter();
 	const ref = useRef<HTMLUListElement | null>(null);
-	const resetUser = useUserStore(state => state.resetUser);
 	const resetLinks = useLinksStore(state => state.resetLinks);
 	const [visible, setVisible] = useState(false);
 
@@ -24,7 +23,6 @@ export default function Nav() {
 		setVisible(false);
 		jsCookie.remove('authenticate', { path: '/', expires: 0 });
 		axios.defaults.headers.common.Authorization = '';
-		resetUser();
 		resetLinks();
 		router.push('/register');
 	};
@@ -42,7 +40,6 @@ export default function Nav() {
 		if (data.delete) {
 			jsCookie.remove('authenticate', { path: '/', expires: 0 });
 			axios.defaults.headers.common.Authorization = '';
-			resetUser();
 			resetLinks();
 			router.push('/');
 		}

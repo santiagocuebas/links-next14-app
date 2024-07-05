@@ -1,6 +1,6 @@
 'use client';
 
-import type { ResponseRegister } from '@/lib/types/global';
+import type { ResRegister } from '@/lib/types/global';
 import type { MetadataProp } from '@/lib/types/props';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -9,18 +9,16 @@ import { FcGoogle } from 'react-icons/fc';
 import axios from '@/lib/axios';
 import { GITHUB_URI, GOOGLE_URI } from '@/lib/config';
 import { Logo } from '@/lib/components';
-import { loadUser } from '@/lib/services';
-import { useUserStore } from "@/lib/store";
+import { loadToken } from '@/lib/services';
 import styles from '@/lib/styles/Register.module.css';
 import { Method } from '@/lib/types/enums';
 
 export default function RegisterPage(metadata: MetadataProp) {
 	const { searchParams } = metadata;
 	const router = useRouter();
-	const setUser = useUserStore(state => state.setUser);
 
 	async function getUserData(url: string) {
-		const data: ResponseRegister | null = await axios({ method: Method.POST, url })
+		const data: ResRegister | null = await axios({ method: Method.POST, url })
 			.then(res => res.data)
 			.catch(err => {
 				console.log(err?.message);
@@ -28,7 +26,7 @@ export default function RegisterPage(metadata: MetadataProp) {
 			});
 
 		if (data !== null) {
-			loadUser(data, setUser);
+			loadToken(data.token);
 			router.push('/dash');
 		}
 	}

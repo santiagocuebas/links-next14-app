@@ -1,77 +1,24 @@
-'use client';
+import type { ResAuth } from "@/lib/types/global";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import axios from "@/lib/axios";
+import { Dash } from '@/lib/components';
 
-import type { ILink } from "@/lib/types/global";
-import { useEffect, useState } from "react";
-import { FaPlus } from "react-icons/fa6";
-import { getUserData } from "@/lib/actions";
-import { Link, Search, Form } from '@/lib/components';
-import { loadUser } from "@/lib/services";
-import { useLinksStore, useUserStore } from "@/lib/store";
-import styles from '@/lib/styles/Profile.module.css';
+export async function getUserData(): Promise<ResAuth> {
+	const token = cookies().get('authenticate');
 
-export default function DashPage() {
-	const user = useUserStore(state => state.user);
-	const links = useLinksStore(state => state.links);
-	const setUser = useUserStore(state => state.setUser);
-	const setLink = useLinksStore(state => state.setLink);
-	const [visible, setVisible] = useState(false);
+	if (!token) throw redirect('/register');
+
+	return axios({ url: '/user/userData', headers: { Authorization: token.value } })
+		.then(res => res.data)
+		.catch(() => {
+			cookies().delete('authenticate');
+			throw redirect('/register');
+		});
+}
+
+export default async function DashPage() {
+	const data = await getUserData();
 	
-	function changeVisibility(value: ILink) {
-		setLink(value);
-		setVisible(true);
-	}
-
-	useEffect(() => {
-		const setData = async () => {
-			const data = await getUserData();
-
-			if (data) {
-				loadUser(data, setUser);
-				useLinksStore.setState({ links: data.links, rawLinks: data.links });
-			}
-		};
-
-		setData();
-	}, []);
-	
-	return (
-		<>
-			{
-				visible
-					? <div className={styles.absolute}>
-							<Form setVisible={setVisible} />
-						</div>
-					: null
-			}
-
-			<div className={styles.user}>
-				Welcome {user?.username}
-			</div>
-
-			<div className={styles.links}>
-				<Search />
-				{
-					links.length > 0
-						? <>
-								{
-									links.map(link => (
-										<Link key={link.id} link={link} change={changeVisibility} />
-									))
-								}
-								<div className={styles.box}>
-									<button className={styles.button} onClick={() => setVisible(true)}>
-										<FaPlus size={32} />
-									</button>
-								</div>
-							</>
-						: <div className={styles.message}>
-								Haven&apos;t saved any links yet?
-								<button className={styles.save} onClick={() => setVisible(true)}>
-									Starts now!
-								</button>
-							</div>
-				}
-			</div>
-		</>
-	);
+	return <Dash data={data} />;
 }

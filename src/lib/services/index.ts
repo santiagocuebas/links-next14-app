@@ -1,3 +1,3 @@
 export { handleForm } from './handle-form';
-export { loadUser } from './load-user';
+export { loadToken } from './load-token';
 export { useOutClick } from './out-click';

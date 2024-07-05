@@ -1,11 +1,5 @@
-import type { ILinksStore, IUserStore } from './types/global';
+import type { ILinksStore } from './types/global';
 import { create } from 'zustand';
-
-export const useUserStore = create<IUserStore>(set => ({
-  user: null,
-  setUser: user => set(({ user })),
-  resetUser: () => set({ user: null })
-}));
 
 export const useLinksStore = create<ILinksStore>(set => ({
   rawLinks: [],
