@@ -5,6 +5,8 @@ import { Nav, Footer } from '@/lib/components';
 import styles from '@/lib/styles/Layout.module.css';
 
 async function getData() {
+  'use server';
+
   const token = cookies().get('authenticate');
 
 	if (!token) redirect('/register');

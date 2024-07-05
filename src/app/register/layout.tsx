@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import styles from '@/lib/styles/Layout.module.css';
 
 async function getData() {
+  'use server';
+
   const token = cookies().get('authenticate');
 
   if (token) redirect('/dash');
