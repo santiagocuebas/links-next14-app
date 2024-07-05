@@ -3,16 +3,10 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import styles from '@/lib/styles/Layout.module.css';
 
-async function getData() {
-  'use server';
-
+export default async function RegisterLayout({ children }: Readonly<ChildProp>) {
   const token = cookies().get('authenticate');
 
   if (token) redirect('/dash');
-}
-
-export default async function RegisterLayout({ children }: Readonly<ChildProp>) {
-  await getData();
   
   return (
     <div className={styles.main}>

@@ -5,9 +5,7 @@ import axios from "@/lib/axios";
 import { Dash } from '@/lib/components';
 
 async function getUserData(): Promise<ResAuth> {
-	'use server';
-
-  const token = cookies().get('authenticate');
+	const token = cookies().get('authenticate');
 
 	if (!token) throw redirect('/register');
 

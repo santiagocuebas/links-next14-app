@@ -4,16 +4,10 @@ import { cookies } from "next/headers";
 import { Nav, Footer } from '@/lib/components';
 import styles from '@/lib/styles/Layout.module.css';
 
-async function getData() {
-  'use server';
-
-  const token = cookies().get('authenticate');
+export default async function DashLayout({ children }: Readonly<ChildProp>) {
+	const token = cookies().get('authenticate');
 
 	if (!token) redirect('/register');
-}
-
-export default async function DashLayout({ children }: Readonly<ChildProp>) {
-	await getData();
 	
 	return (
 		<div className={styles.main}>
