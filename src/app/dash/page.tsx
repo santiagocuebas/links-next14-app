@@ -3,11 +3,11 @@
 import type { ILink, IUser } from "@/lib/types/global";
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
+import { getData } from "@/lib/action";
 import { Link, Search, Form } from '@/lib/components';
 import { loadToken } from "@/lib/services";
 import { useLinksStore } from "@/lib/store";
 import styles from '@/lib/styles/Profile.module.css';
-import { getUserData } from "@/lib/action";
 
 export default function DashPage() {
 	const links = useLinksStore(state => state.links);
@@ -22,12 +22,23 @@ export default function DashPage() {
 
 	useEffect(() => {
 		async function loadData() {
-			const data = await getUserData();
+			const data = await getData('/auth/userData');
 
-			if (data) {
-				useLinksStore.setState({ links: data.links, rawLinks: data.links });
+			if (!(data instanceof Array)) {
     		setUser(data.user);
     		loadToken(data.token);
+			}
+		}
+
+		loadData();
+	}, []);
+
+	useEffect(() => {
+		async function loadData() {
+			const links = await getData('/user/links');
+
+			if (links instanceof Array) {
+				useLinksStore.setState({ links, rawLinks: links });
 			}
 		}
 

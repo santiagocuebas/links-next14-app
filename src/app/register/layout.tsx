@@ -6,8 +6,6 @@ import styles from '@/lib/styles/Layout.module.css';
 export default async function RegisterLayout({ children }: Readonly<ChildProp>) {
   const token = cookies().get('authenticate');
 
-	console.log(`Register token: ${token?.value}`);
-
   if (token) redirect('/dash');
   
   return (

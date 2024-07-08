@@ -59,9 +59,3 @@ export interface ResRegister {
 	user: IUser;
 	token: string;
 }
-
-export interface ResAuth {
-	user: IUser;
-	token: string;
-	links: ILink[];
-}
