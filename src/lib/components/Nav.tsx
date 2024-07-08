@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { FaEllipsisH, FaRegCaretSquareRight, FaTimesCircle } from 'react-icons/fa';
 import axios from '../axios';
@@ -48,9 +47,7 @@ export default function Nav() {
 
 	return (
 		<nav className={styles.nav}>
-			<Link href={'/'} >
-				<Logo nameClass='main' />
-			</Link>
+			<Logo nameClass='main' />
 			<h2>
 				NJLinks
 			</h2>

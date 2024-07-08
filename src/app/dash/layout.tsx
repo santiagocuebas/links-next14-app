@@ -7,7 +7,9 @@ import styles from '@/lib/styles/Layout.module.css';
 export default async function DashLayout({ children }: Readonly<ChildProp>) {
 	const token = cookies().get('authenticate');
 
-	if (!token) throw redirect('/register');
+	console.log(`Dash token: ${token?.value}`);
+
+	if (!token) redirect('/register');
 	
 	return (
 		<div className={styles.main}>

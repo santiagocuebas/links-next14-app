@@ -1,4 +1,3 @@
-export { default as Dash } from './Dash';
 export { default as ErrorBox } from './ErrorBox';
 export { default as Footer } from './Footer';
 export { default as Form } from './Form';

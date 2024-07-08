@@ -6,7 +6,7 @@ import styles from '@/lib/styles/Layout.module.css';
 export default async function Home() {
   const token = cookies().get('authenticate');
 
-	console.log(token);
+	console.log(`Main token: ${token?.value}`);
 
 	if (token) redirect('/dash');
 	
