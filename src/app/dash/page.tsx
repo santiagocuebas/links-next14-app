@@ -7,13 +7,13 @@ import { Dash } from '@/lib/components';
 async function getUserData(): Promise<ResAuth> {
 	const token = cookies().get('authenticate');
 
-	if (!token) throw redirect('/register');
+	if (!token) redirect('/register');
 
 	return axios({ url: '/user/userData', headers: { Authorization: token.value } })
 		.then(res => res.data)
 		.catch(() => {
 			cookies().delete('authenticate');
-			throw redirect('/register');
+			redirect('/register');
 		});
 }
 

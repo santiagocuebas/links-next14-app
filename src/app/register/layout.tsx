@@ -6,7 +6,7 @@ import styles from '@/lib/styles/Layout.module.css';
 export default async function RegisterLayout({ children }: Readonly<ChildProp>) {
   const token = cookies().get('authenticate');
 
-  if (token) throw redirect('/dash');
+  if (token) redirect('/dash');
   
   return (
     <div className={styles.main}>
